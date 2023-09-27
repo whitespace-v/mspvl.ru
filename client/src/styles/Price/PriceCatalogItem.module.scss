@@ -1,0 +1,25 @@
+.PriceCatalogItem {
+	.title {
+		font-size: 20px;
+		font-weight: 500;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	.catalogImg {
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: 50% 50%;
+		width: 60%;
+		height: 200px;
+		display: block;
+		margin: 0 auto;
+	}
+	@media screen and (max-width: 550px) {
+		padding: 0;
+	}
+	@media screen and (max-width: 758px) {
+		.catalogImg {
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,582 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.9 (Ubuntu 14.9-0ubuntu0.22.04.1)
+-- Dumped by pg_dump version 14.9 (Ubuntu 14.9-0ubuntu0.22.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: reviews; Type: TABLE; Schema: public; Owner: stroy_root
+--
+
+CREATE TABLE public.reviews (
+    id integer NOT NULL,
+    message character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.reviews OWNER TO stroy_root;
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE; Schema: public; Owner: stroy_root
+--
+
+CREATE SEQUENCE public.reviews_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.reviews_id_seq OWNER TO stroy_root;
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stroy_root
+--
+
+ALTER SEQUENCE public.reviews_id_seq OWNED BY public.reviews.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: stroy_root
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    number character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    role character varying(255) DEFAULT 'USER'::character varying,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO stroy_root;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: stroy_root
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO stroy_root;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stroy_root
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: vehicle_categories; Type: TABLE; Schema: public; Owner: stroy_root
+--
+
+CREATE TABLE public.vehicle_categories (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    img character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.vehicle_categories OWNER TO stroy_root;
+
+--
+-- Name: vehicle_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: stroy_root
+--
+
+CREATE SEQUENCE public.vehicle_categories_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.vehicle_categories_id_seq OWNER TO stroy_root;
+
+--
+-- Name: vehicle_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stroy_root
+--
+
+ALTER SEQUENCE public.vehicle_categories_id_seq OWNED BY public.vehicle_categories.id;
+
+
+--
+-- Name: vehicle_fields; Type: TABLE; Schema: public; Owner: stroy_root
+--
+
+CREATE TABLE public.vehicle_fields (
+    id integer NOT NULL,
+    name integer NOT NULL,
+    text character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "vehicleId" integer
+);
+
+
+ALTER TABLE public.vehicle_fields OWNER TO stroy_root;
+
+--
+-- Name: vehicle_fields_id_seq; Type: SEQUENCE; Schema: public; Owner: stroy_root
+--
+
+CREATE SEQUENCE public.vehicle_fields_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.vehicle_fields_id_seq OWNER TO stroy_root;
+
+--
+-- Name: vehicle_fields_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stroy_root
+--
+
+ALTER SEQUENCE public.vehicle_fields_id_seq OWNED BY public.vehicle_fields.id;
+
+
+--
+-- Name: vehicle_images; Type: TABLE; Schema: public; Owner: stroy_root
+--
+
+CREATE TABLE public.vehicle_images (
+    id integer NOT NULL,
+    img character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "vehicleId" integer
+);
+
+
+ALTER TABLE public.vehicle_images OWNER TO stroy_root;
+
+--
+-- Name: vehicle_images_id_seq; Type: SEQUENCE; Schema: public; Owner: stroy_root
+--
+
+CREATE SEQUENCE public.vehicle_images_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.vehicle_images_id_seq OWNER TO stroy_root;
+
+--
+-- Name: vehicle_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stroy_root
+--
+
+ALTER SEQUENCE public.vehicle_images_id_seq OWNED BY public.vehicle_images.id;
+
+
+--
+-- Name: vehicles; Type: TABLE; Schema: public; Owner: stroy_root
+--
+
+CREATE TABLE public.vehicles (
+    id integer NOT NULL,
+    "categoryId" integer NOT NULL,
+    name character varying(255) NOT NULL,
+    description character varying(9999) NOT NULL,
+    price integer DEFAULT 0 NOT NULL,
+    image character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "vehicleCategoryId" integer
+);
+
+
+ALTER TABLE public.vehicles OWNER TO stroy_root;
+
+--
+-- Name: vehicles_id_seq; Type: SEQUENCE; Schema: public; Owner: stroy_root
+--
+
+CREATE SEQUENCE public.vehicles_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.vehicles_id_seq OWNER TO stroy_root;
+
+--
+-- Name: vehicles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: stroy_root
+--
+
+ALTER SEQUENCE public.vehicles_id_seq OWNED BY public.vehicles.id;
+
+
+--
+-- Name: reviews id; Type: DEFAULT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.reviews ALTER COLUMN id SET DEFAULT nextval('public.reviews_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: vehicle_categories id; Type: DEFAULT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicle_categories ALTER COLUMN id SET DEFAULT nextval('public.vehicle_categories_id_seq'::regclass);
+
+
+--
+-- Name: vehicle_fields id; Type: DEFAULT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicle_fields ALTER COLUMN id SET DEFAULT nextval('public.vehicle_fields_id_seq'::regclass);
+
+
+--
+-- Name: vehicle_images id; Type: DEFAULT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicle_images ALTER COLUMN id SET DEFAULT nextval('public.vehicle_images_id_seq'::regclass);
+
+
+--
+-- Name: vehicles id; Type: DEFAULT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicles ALTER COLUMN id SET DEFAULT nextval('public.vehicles_id_seq'::regclass);
+
+
+--
+-- Data for Name: reviews; Type: TABLE DATA; Schema: public; Owner: stroy_root
+--
+
+COPY public.reviews (id, message, "createdAt", "updatedAt") FROM stdin;
+7	Хуета	2023-09-04 04:45:23.419+00	2023-09-04 04:45:23.419+00
+8	Полное говно  	2023-09-04 04:47:42.077+00	2023-09-04 04:47:42.077+00
+9	ывыв	2023-09-05 02:22:08.101+00	2023-09-05 02:22:08.101+00
+10	Чмошник	2023-09-09 09:03:25.86+00	2023-09-09 09:03:25.86+00
+11	аврвар	2023-09-21 01:17:07.777+00	2023-09-21 01:17:07.777+00
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: stroy_root
+--
+
+COPY public.users (id, number, password, role, "createdAt", "updatedAt") FROM stdin;
+1	+7999999999	$2b$05$qckMJDJ6WJ3WiuzrnPtjLe7CbGaAFgCH4Pa0xqm8U8KkBtXz3BKoe	Admin	2022-12-08 05:53:39.592+00	2022-12-08 05:53:39.592+00
+2	+79532024541	$2b$05$9J4/ZA38bciqmlvw21fz/OYWOEo319a7vrVPnygBjYyDNHLQKhrGa	User	2023-03-16 10:16:58.764+00	2023-03-16 10:16:58.764+00
+3	89089725692	$2b$05$6Vo3ex3Q1hW48byLzbLQM.HNHgWONQ4HUMwtM4Dj5HjCuAISBWrsC	User	2023-04-21 02:17:52.147+00	2023-04-21 02:17:52.147+00
+4	00000000000	$2b$05$/4Oyl3/9kdfCYOS.r7w1LeO8WyHmhn2LXS//v44AWndjMiAWHKlDu	Admin	2023-05-15 02:09:49.606+00	2023-05-15 02:09:49.606+00
+6	111111111111	$2b$05$PB7iW4y/xe3sYNE8tnYMf.hQau/abVDtcqMOF1DqcQ8fdIIuwVReS	Admin	2023-07-10 05:01:06.741+00	2023-07-10 05:01:06.741+00
+7	22222222222	$2b$05$OAOlmhyNgMlWSM9aN.DWAOA1aw5397fhBaB6W/20k04cyMRYPnChm	Admin	2023-07-11 04:56:35.187+00	2023-07-11 04:56:35.187+00
+8	89952194732	$2b$05$MxSlRSFQ./F8v6eBCcODD..YrqOOQqSeBGdEjDJuz5lUmZ8yShnjS	Admin	2023-07-11 05:01:24.914+00	2023-07-11 05:01:24.914+00
+9	99999999999	$2b$05$68kxnm6vybbqvHg5UgNk/.7X6CyJFCOlFCnSJZLZH.3eQOSV/xchS	User	2023-09-27 07:04:20.653+00	2023-09-27 07:04:20.653+00
+\.
+
+
+--
+-- Data for Name: vehicle_categories; Type: TABLE DATA; Schema: public; Owner: stroy_root
+--
+
+COPY public.vehicle_categories (id, name, img, "createdAt", "updatedAt") FROM stdin;
+17	Автобетононасосы	5f4ca078-8237-4c4f-a1ff-b020510d08f0.jpg	2023-05-15 02:18:35.011+00	2023-05-15 02:18:35.011+00
+18	Автовышки и манипуляторы	62cb1bb1-24ad-4a84-9eac-afdcfdd8bf0c.jpg	2023-05-15 02:19:42.607+00	2023-05-15 02:19:42.607+00
+19	Краны на гусеничном ходу	f24f3658-11d3-4543-8b9c-f4b675835d58.jpg	2023-05-15 02:20:30.44+00	2023-05-15 02:20:30.44+00
+20	Автокраны	30bbb9ef-a638-45ef-8479-4d652bee299e.jpg	2023-05-15 02:22:04.616+00	2023-05-15 02:22:04.616+00
+21	Ассенизаторы и илососы	d25e8641-1e12-48d6-ad3b-9a71e41c89f3.jpg	2023-05-15 02:24:15.939+00	2023-05-15 02:24:15.939+00
+22	Бетоновозы и цементовозы	27f44431-f0ed-45b1-921d-3ce4ce80797f.jpg	2023-05-15 02:24:53.281+00	2023-05-15 02:24:53.281+00
+23	Катки	970a177f-1e7c-4109-8321-df2c65c02e02.jpg	2023-05-15 02:25:21.499+00	2023-05-15 02:25:21.499+00
+24	Бульдозеры	549893b6-ea01-48fd-a173-bc11ff585982.jpg	2023-05-15 02:25:59.971+00	2023-05-15 02:25:59.971+00
+25	Гидромолоты	f10e602e-ddb1-4d83-867c-935658ec8f50.jpg	2023-05-15 02:26:34.139+00	2023-05-15 02:26:34.139+00
+26	Грейдеры	78902c8c-a90d-4beb-86b4-eb99ec96a4a8.jpg	2023-05-15 02:27:42.847+00	2023-05-15 02:27:42.847+00
+27	Фронтальные погрузчики	d76f09dd-f554-4f04-8c46-6ae20aff7385.jpg	2023-05-15 02:28:13.791+00	2023-05-15 02:28:13.791+00
+28	Погрузчики	cce74949-e764-4631-817d-1e18e6e6d1a8.jpg	2023-05-15 02:28:53.01+00	2023-05-15 02:28:53.01+00
+29	Телескопические погрузчики	9f7f53cd-4b2a-4498-8e88-4a43d53d57d3.jpg	2023-05-15 02:29:30.075+00	2023-05-15 02:29:30.075+00
+30	Мусоровозы и бункеровозы	fc9c40ef-60c9-4204-95d7-258f33a1027f.jpg	2023-05-15 02:30:06.675+00	2023-05-15 02:30:06.675+00
+31	Тралы и низкорамные платформы	92902b3b-d1f5-4807-8ce7-1b59f11ad409.jpg	2023-05-15 02:31:00.536+00	2023-05-15 02:31:00.536+00
+32	Коммунально-дорожные машины	15acb2f6-3722-4c8b-85b6-59b0ebfd3393.jpg	2023-05-15 02:31:55.313+00	2023-05-15 02:31:55.313+00
+33	Самосвалы и тонары	7c5d80ab-f343-440b-becb-29741ca7fa13.jpg	2023-05-15 02:32:23.771+00	2023-05-15 02:32:23.771+00
+34	Экскаваторы	868b6daa-5408-41f6-a22f-4f3f9774ce99.jpg	2023-05-15 02:33:09.573+00	2023-05-15 02:33:09.573+00
+35	Экскаваторы-погрузчики	803a9ba9-b530-4fa0-a312-ee65d07af234.jpg	2023-05-15 02:33:45.595+00	2023-05-15 02:33:45.595+00
+36	Мини-экскаваторы	c7645461-d565-44cd-a23c-246db77e4e7c.jpg	2023-05-15 02:34:28.917+00	2023-05-15 02:34:28.917+00
+37	Ямобуры	07d2f72f-5c82-44b7-ace5-8b507b30d4f8.jpg	2023-05-15 02:35:01.358+00	2023-05-15 02:35:01.358+00
+38	Бурильно-сваебойные установки	3d0b570c-8f7b-4f07-887a-28cf91fbeae0.jpg	2023-05-15 02:37:24.941+00	2023-05-15 02:37:24.941+00
+\.
+
+
+--
+-- Data for Name: vehicle_fields; Type: TABLE DATA; Schema: public; Owner: stroy_root
+--
+
+COPY public.vehicle_fields (id, name, text, "createdAt", "updatedAt", "vehicleId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: vehicle_images; Type: TABLE DATA; Schema: public; Owner: stroy_root
+--
+
+COPY public.vehicle_images (id, img, "createdAt", "updatedAt", "vehicleId") FROM stdin;
+89	8b7b2a1d-78fb-43f7-8a52-de6c5f390376.jpg	2023-05-15 02:45:54.979+00	2023-05-15 02:45:54.979+00	38
+90	b0477ff9-c659-4728-95be-9fd5dd7f2a24.jpg	2023-05-15 02:45:54.984+00	2023-05-15 02:45:54.984+00	38
+91	2b815bc7-aac9-42aa-b2b0-3d73bdd1abfd.jpg	2023-05-15 02:45:54.988+00	2023-05-15 02:45:54.988+00	38
+92	cc7854cb-6ce6-4cb3-85c1-72280619e59d.jpg	2023-05-15 02:49:35.882+00	2023-05-15 02:49:35.882+00	39
+93	4b0ad60c-f960-4dbe-b180-ba0e7c67e0cc.jpg	2023-05-15 02:49:35.888+00	2023-05-15 02:49:35.888+00	39
+94	d6dbedd3-f273-4e9e-855c-4df7d7124e68.jpg	2023-05-15 02:49:35.891+00	2023-05-15 02:49:35.891+00	39
+95	1af60d0f-8db9-4887-a4bc-0a26e9310ea0.jpg	2023-05-15 02:50:30.421+00	2023-05-15 02:50:30.421+00	40
+96	fb7da9c9-4390-45c9-896b-28516b460a7d.jpg	2023-05-15 02:50:30.427+00	2023-05-15 02:50:30.427+00	40
+97	435151aa-f5df-460b-8a4d-3a2b625ca419.jpg	2023-05-15 02:52:01.864+00	2023-05-15 02:52:01.864+00	41
+98	8a82378e-7d9a-4732-b40d-3f41e74d6401.jpg	2023-05-15 02:52:01.871+00	2023-05-15 02:52:01.871+00	41
+99	3999fdf2-1298-4f54-b96b-633e57d94370.jpg	2023-05-15 02:52:01.875+00	2023-05-15 02:52:01.875+00	41
+100	d5376c2c-bd8d-4856-a5e4-897cbf9aca6b.jpg	2023-05-15 02:53:00.598+00	2023-05-15 02:53:00.598+00	42
+101	5b8523c3-29a5-477f-bbc8-db4af9cb0a2d.jpg	2023-05-15 02:53:00.602+00	2023-05-15 02:53:00.602+00	42
+102	2cf8ded7-7663-426d-a13b-77a5e202483e.jpg	2023-05-15 02:53:00.606+00	2023-05-15 02:53:00.606+00	42
+103	3d5cf98a-d3d0-45f6-bfd0-5e993ee12599.jpg	2023-05-15 02:54:19.524+00	2023-05-15 02:54:19.524+00	43
+104	724b50d3-e15e-477e-815f-607a82de09c7.jpg	2023-05-15 02:54:19.529+00	2023-05-15 02:54:19.529+00	43
+105	276135a0-fbe7-4b43-9b23-7b1221d2e12d.jpg	2023-05-15 02:54:19.532+00	2023-05-15 02:54:19.532+00	43
+106	9479bd4c-1907-49f1-b4e5-b53b9a060dc2.jpg	2023-05-15 02:56:20.941+00	2023-05-15 02:56:20.941+00	44
+107	716941ea-0fc8-43ed-ab31-bb58d94ce68e.jpg	2023-05-15 02:56:20.947+00	2023-05-15 02:56:20.947+00	44
+108	4ba1bbeb-5f76-4fbb-805d-e987fb3af29f.jpg	2023-05-15 02:56:20.95+00	2023-05-15 02:56:20.95+00	44
+109	cfc61665-af0f-45ec-be12-08e79c736a85.jpg	2023-05-15 02:56:20.953+00	2023-05-15 02:56:20.953+00	44
+113	defc76f7-c4b8-4b67-8266-5b6a6ddea954.jpg	2023-05-15 02:58:35.031+00	2023-05-15 02:58:35.031+00	46
+114	b91d2314-8d60-4f1a-831c-b5013d811f06.jpg	2023-05-15 02:58:35.036+00	2023-05-15 02:58:35.036+00	46
+115	eaf5d38c-f1d2-4659-8aa1-e62422c02c5a.jpg	2023-05-15 02:58:35.043+00	2023-05-15 02:58:35.043+00	46
+116	b62b2a84-80f9-45e9-bd3d-f2522c8a1638.jpg	2023-05-15 02:59:25.544+00	2023-05-15 02:59:25.544+00	47
+117	abb6c748-7281-47b4-bfb5-c27d084a88f6.jpg	2023-05-15 02:59:25.547+00	2023-05-15 02:59:25.547+00	47
+118	f385134b-5a0a-42b2-a1bf-4a7fed8125a0.jpg	2023-05-15 03:00:16.921+00	2023-05-15 03:00:16.921+00	48
+119	c89fdee4-681f-41e2-b636-18b3c741ca29.jpg	2023-05-15 03:00:16.927+00	2023-05-15 03:00:16.927+00	48
+120	9549110e-408f-44a7-b589-b5e70f7d293c.jpg	2023-05-15 03:01:11.445+00	2023-05-15 03:01:11.445+00	49
+121	21942fd9-9d64-4a39-b0d7-b3a179eedce0.jpg	2023-05-15 03:01:11.45+00	2023-05-15 03:01:11.45+00	49
+122	0f10a589-c16c-48d0-a55d-961cf57af10a.jpg	2023-05-15 03:02:18.513+00	2023-05-15 03:02:18.513+00	50
+123	2c93ad6e-f2a7-48e4-896c-dd0bfa7e0b9d.jpg	2023-05-15 03:02:18.519+00	2023-05-15 03:02:18.519+00	50
+124	c78a3a70-9f7c-43aa-af20-26e2df9c1fdc.jpg	2023-05-15 03:02:18.525+00	2023-05-15 03:02:18.525+00	50
+125	6c51c43f-1fe1-4c51-b323-acf485c9db66.jpg	2023-05-15 03:04:52.066+00	2023-05-15 03:04:52.066+00	51
+126	d2db2835-c598-4637-8ee9-aaa2a12cbc3a.jpg	2023-05-15 03:04:52.07+00	2023-05-15 03:04:52.07+00	51
+127	6773c157-d47c-4619-9fc0-f158d6854fed.jpg	2023-05-15 03:04:52.075+00	2023-05-15 03:04:52.075+00	51
+128	cacbcb4d-20fc-49eb-8054-f0d47f0b0b17.jpg	2023-05-15 03:04:52.078+00	2023-05-15 03:04:52.078+00	51
+129	4f9abd69-6d37-4b5a-9a6d-b176960ff56a.jpg	2023-05-15 03:07:19.628+00	2023-05-15 03:07:19.628+00	52
+130	1d03f7d9-ea4d-4fbc-a66c-391a5fa6a059.jpg	2023-05-15 03:07:19.633+00	2023-05-15 03:07:19.633+00	52
+131	3c55b4be-7599-4f7b-9d7d-bc0247eff952.jpg	2023-05-15 03:09:11+00	2023-05-15 03:09:11+00	53
+132	0612dd19-9b74-4e63-a763-c8e9d020e195.jpg	2023-05-15 03:09:11.004+00	2023-05-15 03:09:11.004+00	53
+133	c2781265-830b-401f-958f-52c1d85af1d5.jpg	2023-05-15 03:11:45.674+00	2023-05-15 03:11:45.674+00	54
+134	484dc95d-66c8-4038-9143-7b0efae3c1ed.jpg	2023-05-15 03:11:45.678+00	2023-05-15 03:11:45.678+00	54
+135	d00a801c-56b6-4c59-a405-29c85431d40d.jpg	2023-05-15 03:14:00.582+00	2023-05-15 03:14:00.582+00	55
+136	588be2ca-d1bb-43ca-b20a-ce764b1d2007.jpg	2023-05-15 03:14:00.586+00	2023-05-15 03:14:00.586+00	55
+137	2486640c-0a66-44a9-b8ad-5a60d4bce08a.jpg	2023-05-15 03:14:00.589+00	2023-05-15 03:14:00.589+00	55
+138	2ff00558-dc10-4018-a741-066b1387d644.jpg	2023-05-15 03:15:14.666+00	2023-05-15 03:15:14.666+00	56
+139	619e626b-47f9-4e48-a01a-b511a10176eb.jpg	2023-05-15 03:15:14.67+00	2023-05-15 03:15:14.67+00	56
+140	da526209-d030-4775-b292-eded4f2644f3.jpg	2023-05-15 03:15:14.672+00	2023-05-15 03:15:14.672+00	56
+141	016c5674-cd51-475c-835a-6186d4d5eddd.jpg	2023-05-15 03:16:19.711+00	2023-05-15 03:16:19.711+00	57
+142	5dbdec6a-1874-4f6f-8ad3-1523706a1fae.jpg	2023-05-15 03:16:19.716+00	2023-05-15 03:16:19.716+00	57
+143	96f77f4d-a6ae-4d80-a338-378dd6956480.jpg	2023-05-15 03:17:36.933+00	2023-05-15 03:17:36.933+00	58
+144	b6ae5ee2-7831-4684-b3c1-f3e4e8713774.jpg	2023-05-15 03:17:36.938+00	2023-05-15 03:17:36.938+00	58
+145	d8525969-f3f0-4aa2-b8a3-f440c67b9b37.jpg	2023-05-15 03:18:24.582+00	2023-05-15 03:18:24.582+00	59
+146	2c1faff0-cd95-44d0-8428-7485ddced497.jpg	2023-05-15 03:18:24.586+00	2023-05-15 03:18:24.586+00	59
+147	8aa717fc-26e9-4e88-8606-20f5b38adfd8.jpg	2023-05-15 03:39:50.123+00	2023-05-15 03:39:50.123+00	60
+148	fe0cbed8-4d70-4149-9afc-836eac09ec0a.jpg	2023-05-15 03:39:50.127+00	2023-05-15 03:39:50.127+00	60
+149	99372360-72f3-4f08-ad37-28872af97152.jpg	2023-05-15 03:41:26.054+00	2023-05-15 03:41:26.054+00	61
+150	149c2e90-9e32-456d-b1a9-c7f2118fccf3.jpg	2023-05-15 03:41:26.06+00	2023-05-15 03:41:26.06+00	61
+\.
+
+
+--
+-- Data for Name: vehicles; Type: TABLE DATA; Schema: public; Owner: stroy_root
+--
+
+COPY public.vehicles (id, "categoryId", name, description, price, image, "createdAt", "updatedAt", "vehicleCategoryId") FROM stdin;
+60	37	Ямобуры	Тип бура:\r\nЯмобур\r\n\r\nДиаметр бурения:\r\nОт 100 милиметров\r\n\r\nГлубина бурения:\r\nОт 7 метров\r\n\r\nПроходимость:\r\nКолёсные 	0	029a7f4f-f30b-45f2-8b0a-5b9f5c3b2e58.jpg	2023-05-15 03:39:50.069+00	2023-05-15 03:39:50.069+00	\N
+61	38	 Бурильно-сваебойные установки	Тип бура:\r\nБуровая установка\r\n\r\nДиаметр бурения:\r\nОт 100 милиметров\r\n\r\nГлубина бурения:\r\nОт 7 метров\r\n\r\nПроходимость:\r\nГусеничные	0	e391936e-3acf-4170-9491-84df54e29fbe.jpg	2023-05-15 03:41:25.992+00	2023-05-15 03:41:25.992+00	\N
+38	17	Автобетононасос 15 - 350м	Производительность:\r\nДо 170 куб. м/час\r\n\r\nВысота подачи:\r\nОт 15 до 350 метров\r\n\r\nДлина стрелы:\r\nДо 42 метров	0	cad52cf2-98f5-46f6-b938-743641609950.jpg	2023-05-15 02:45:54.919+00	2023-05-15 02:45:54.919+00	\N
+39	18	Автовышка	Высота подъёма:\r\nОт 12 до 45 метров\r\n\r\nПроходимость:\r\nКолёсные и вездеходы	0	158b0a8e-68f5-419e-aec1-810c41cc07c2.jpg	2023-05-15 02:49:35.825+00	2023-05-15 02:49:35.825+00	\N
+40	18	Манипулятор	Вылет стрелы:\r\nОт 11 до 20 метров\r\n\r\nГрузоподёмность:\r\n3, 5, 7 тонн	0	a550fb08-5f51-4814-9296-42e64098c551.jpg	2023-05-15 02:50:30.373+00	2023-05-15 02:50:30.373+00	\N
+41	19	Кран на гусеничном ходу	Виды:\r\nКороткобазные,\r\nс манипулятором\r\n\r\nВысота подъёма груза:\r\nВ среднем - 80 метров\r\n\r\nГрузоподъёмность:\r\nДо 150 тонн\r\n\r\nПроходимость:\r\nГусеничные	0	17e7b91c-1052-4029-b8e5-55b52a9467b1.jpg	2023-05-15 02:52:01.818+00	2023-05-15 02:52:01.818+00	\N
+42	20	Автокран от 21м	Высота подъёма груза:\r\nОт 21 метра\r\n\r\nГрузоподъёмность:\r\nОт 25 тонн\r\n\r\nПроходимость:\r\nКолёсные и вездеходы	0	04f26d6c-acd7-46dc-90d8-9aa83a774487.jpg	2023-05-15 02:53:00.551+00	2023-05-15 02:53:00.551+00	\N
+43	21	Ассенизатор и илосос	Объём цистерны:\r\nОт 4 м/куб.\r\n\r\nДлина шланга:\r\nОт 15 метров\r\n\r\nТип цистерны:\r\nВакуумная и иллососная\r\n\r\nПроходимость:\r\nКолёсные	0	6c00d1fa-0b08-4410-ac8f-d38a5187b094.jpg	2023-05-15 02:54:19.474+00	2023-05-15 02:54:19.474+00	\N
+44	22	Бетоновоз / цементовоз	Объём \r\nбарабана миксера:\r\nОт 10 м/куб.\r\n\r\nПроходимость:\r\nКолёсные\r\n\r\nТип цистерны:\r\nЦементовоз и \r\nавтобетоносмеситель	0	e65fcc4c-72ef-4e3a-81c3-3d67e9af6ca5.jpg	2023-05-15 02:56:20.893+00	2023-05-15 02:56:20.893+00	\N
+46	23	Каток	Виды:\r\nГладковальцовые,\r\nкулачковые,\r\nрешетчатые\r\n\r\nВиды:\r\nПластинчатые,\r\nребристые,\r\nпневмоколесные\r\n\r\nЭксплуатационная масса:\r\nОт 1 до 20 тонн\r\n\r\nВиды осей:\r\nОдноосные, двухосные	0	a80a40aa-476a-4782-9a75-3a171f9a681f.jpg	2023-05-15 02:58:34.985+00	2023-05-15 02:58:34.985+00	\N
+47	24	Бульдозер	Оборудование:\r\nКлык для рыхления (снятие верхнего слоя грунта)\r\n\r\nТип:\r\nТяжёлые и рыхлители\r\n\r\nЭксплуатационная масса:\r\nОт 5 до 70 тонн\r\n\r\nБренды:\r\nХитачи, Катапиллер	0	2b398295-5f49-430c-9257-7ef668bd9902.jpg	2023-05-15 02:59:25.488+00	2023-05-15 02:59:25.488+00	\N
+48	25	Гидромолот	Стрела гидромолота:\r\nОт 1 метра\r\n\r\nТип гидромолота:\r\nОт легкого до тяжёлого\r\n\r\nПроходимость:\r\nКолёсные и гусеничные	0	0125d9d8-e17e-4a13-9997-96a37a50df0c.jpg	2023-05-15 03:00:16.853+00	2023-05-15 03:00:16.853+00	\N
+49	26	Грейдер	Вид: C одним или двумя отвалами\r\n\r\nПривод: 4WD и 2WD	0	b263866f-bab4-4b5a-aea5-53ee2548e198.jpg	2023-05-15 03:01:11.392+00	2023-05-15 03:01:11.392+00	\N
+50	27	Фронтальный погрузчик	Вид погрузчика:\r\nФронтальный\r\n\r\nОбъём ковша:\r\nОт 1 до 6 м/куб.\r\n\r\nГрузоподъёмность ковша:\r\nОт 3,5 тонн\r\n\r\nПроходимость:\r\nКолёсные и вездеходы	0	589b7167-5fea-4ef6-9e9d-789450d4c420.jpg	2023-05-15 03:02:18.443+00	2023-05-15 03:02:18.443+00	\N
+51	28	Погрузчик	Высота подъёма:\r\nОт 3 до 4,5 метров\r\n\r\nГрузоподъёмность:\r\nОт 1,5 до 3,5 тонн\r\n\r\nКовш:\r\nBobCat\r\n\r\nГрузоподъёмность:\r\n945 киллограм	0	0d09de59-8999-409d-88f7-a2d7217eec06.jpg	2023-05-15 03:04:52.017+00	2023-05-15 03:04:52.017+00	\N
+52	29	Телескопический погрузчик	Оборудование:\r\nКовш, вилы\r\n\r\nГрузоподъёмность ковша:\r\nОт 3,5 тонн\r\n\r\nПроходимость:\r\nКолёсные 	0	60941a82-29a8-412c-a764-30469e893d67.jpg	2023-05-15 03:07:19.574+00	2023-05-15 03:07:19.574+00	\N
+53	30	Мусоровоз / бункеровоз	Тип бункера:\r\nЛомовоз и строительный мусор\r\n\r\nГрузоподъёмность бункера:\r\nОт 3,5 тонн\r\n\r\nОбъём бункера:\r\nОт 27 м/куб.	0	aba5700b-d69c-44f4-9983-f3966ed8fdbb.jpg	2023-05-15 03:09:10.947+00	2023-05-15 03:09:10.947+00	\N
+54	31	Тралы и низкорамные платформы	Вид площадки:\r\nРаздвижная и нераздвижная платформа\r\n\r\nГрузоподъёмность:\r\nОт 24,5 тонн\r\n\r\nВысота платформы:\r\nОт 0,9 тонны\r\n\r\nДлина платформы:\r\nОт 16,5 метров	0	f2011606-6ffe-40c2-88cf-a5169416f302.jpg	2023-05-15 03:11:45.623+00	2023-05-15 03:11:45.623+00	\N
+55	32	Коммунально-дорожные машины	Вид техники:\r\nПоливомоечная, подметально-уборочная, комбинированная \r\n\r\nНавесное оборудование:\r\nКовш, щётки, цилиндры\r\n\r\nВид техники:\r\nТрактор Беларус\r\n\r\nНавесное оборудование:\r\nКовш, щётки\r\n\r\nВид техники:\r\nПодметально-уборочная \r\n\r\nНавесное оборудование:\r\nТратуарная щётка, ковш	0	9162b56a-1bf3-436c-8801-5dbf3bf032e3.jpg	2023-05-15 03:14:00.533+00	2023-05-15 03:14:00.533+00	\N
+56	33	Самосвалы и тонары	Тип:\r\nКарьерные и тонары\r\n\r\nОбъём кузова:\r\nОт 3 до 25 м/куб.\r\n\r\nГрузоподъёмность:\r\nОт 15 тонн	0	b0f19146-a76e-4823-b3f1-b4eaf8e34d6d.jpg	2023-05-15 03:15:14.614+00	2023-05-15 03:15:14.614+00	\N
+57	34	Экскаваторы	Оборудование:\r\nГидромолот, \r\nобрубщик свай\r\n\r\nДоп. оборудование:\r\n Вибропогружатель \r\nдля шпунта Ларсена\r\n\r\nМасса:\r\nОт 3 до 70 тонн\r\n\r\nПроходимость:\r\nКолёсные и гусеничные	0	b7e19d83-03e3-4c13-a667-92222c5abf7b.jpg	2023-05-15 03:16:19.661+00	2023-05-15 03:16:19.661+00	\N
+58	35	Экскаваторы-погрузчики	Навесное оборудование:\r\nКовш, траншейный ковш, челюстной ковш\r\n\r\nГлубина копания:\r\nОт 5 метров\r\n \r\nГрузоподъёмность коваша:\r\nОт 1,1 тонны\r\n\r\nПроходимость:\r\nКолёсные и гусеничные	0	c9706869-cd57-4e7d-9a2b-6e5c8cf31bfa.jpg	2023-05-15 03:17:36.886+00	2023-05-15 03:17:36.886+00	\N
+59	36	Мини-экскаваторы	Ширина эксковатора:\r\nОт 1 метра\r\n\r\nГлубина копания:\r\nДо 2,2 метров\r\n\r\nВысота погрузки:\r\nДо 2,5 метров\r\n\r\nПроходимость:\r\nГусеничные	0	f6c60bc8-a78a-405b-bb73-f4725c655a51.jpg	2023-05-15 03:18:24.535+00	2023-05-15 03:18:24.535+00	\N
+\.
+
+
+--
+-- Name: reviews_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stroy_root
+--
+
+SELECT pg_catalog.setval('public.reviews_id_seq', 11, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stroy_root
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 9, true);
+
+
+--
+-- Name: vehicle_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stroy_root
+--
+
+SELECT pg_catalog.setval('public.vehicle_categories_id_seq', 39, true);
+
+
+--
+-- Name: vehicle_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stroy_root
+--
+
+SELECT pg_catalog.setval('public.vehicle_fields_id_seq', 1, false);
+
+
+--
+-- Name: vehicle_images_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stroy_root
+--
+
+SELECT pg_catalog.setval('public.vehicle_images_id_seq', 154, true);
+
+
+--
+-- Name: vehicles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: stroy_root
+--
+
+SELECT pg_catalog.setval('public.vehicles_id_seq', 63, true);
+
+
+--
+-- Name: reviews reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.reviews
+    ADD CONSTRAINT reviews_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_number_key; Type: CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_number_key UNIQUE (number);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: vehicle_categories vehicle_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicle_categories
+    ADD CONSTRAINT vehicle_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: vehicle_fields vehicle_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicle_fields
+    ADD CONSTRAINT vehicle_fields_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: vehicle_images vehicle_images_pkey; Type: CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicle_images
+    ADD CONSTRAINT vehicle_images_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: vehicles vehicles_pkey; Type: CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicles
+    ADD CONSTRAINT vehicles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: vehicle_fields vehicle_fields_vehicleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicle_fields
+    ADD CONSTRAINT "vehicle_fields_vehicleId_fkey" FOREIGN KEY ("vehicleId") REFERENCES public.vehicles(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: vehicle_images vehicle_images_vehicleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicle_images
+    ADD CONSTRAINT "vehicle_images_vehicleId_fkey" FOREIGN KEY ("vehicleId") REFERENCES public.vehicles(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: vehicles vehicles_vehicleCategoryId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: stroy_root
+--
+
+ALTER TABLE ONLY public.vehicles
+    ADD CONSTRAINT "vehicles_vehicleCategoryId_fkey" FOREIGN KEY ("vehicleCategoryId") REFERENCES public.vehicle_categories(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

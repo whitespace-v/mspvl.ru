@@ -1,0 +1,23 @@
+.PriceProductItem {
+	background-color: rgba(116, 85, 255, 0.53);
+	margin-top: 20px;
+	border-radius: 5px;
+	min-height: 100px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	.title {
+		margin-bottom: 10px;
+		font-size: 20px;
+	}
+	.btns {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-top: 10px;
+		@media screen and (max-width: 830px) {
+			flex-direction: column;
+		}
+	}
+}
